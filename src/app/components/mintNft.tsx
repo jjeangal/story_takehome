@@ -3,9 +3,6 @@ import { publicClient, walletClient } from "../contexts/useStoryClient";
 import abi from "../../contracts/swe.abi";
 
 export async function mintNFT(): Promise<string> {
-    if (!walletClient) {
-        throw new Error("No wallet client found");
-    }
 
     const [account] = await walletClient.getAddresses();
 
