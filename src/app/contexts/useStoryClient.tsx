@@ -2,22 +2,24 @@ import {
     StoryClient,
     StoryConfig
 } from "@story-protocol/core-sdk";
-import { JsonRpcAccount, createWalletClient, http, custom, createPublicClient } from "viem";
-import { useAccount } from "wagmi";
+import { createWalletClient, http, custom, createPublicClient } from "viem";
 import { sepolia } from 'viem/chains'
+import { useAccount } from "wagmi";
+import { JsonRpcAccount } from "viem";
+import 'viem/window';
 
-export function useStoryClient(): { client: StoryClient | undefined } {
+export function useStoryClient(): { client: StoryClient } {
+
     const acc = useAccount();
 
-    if (!acc || !acc.address) return { client: undefined };
-
     const account: JsonRpcAccount = {
-        address: acc.address,
+        address: acc.address as `0x${string}`,
         type: 'json-rpc'
     };
+
     const config: StoryConfig = {
         account,
-        transport: http(process.env.RPC_PROVIDER_URL),
+        transport: http(process.env.NEXT_PUBLIC_RPC_PROVIDER_URL),
     }
 
     const client = StoryClient.newClient(config);
