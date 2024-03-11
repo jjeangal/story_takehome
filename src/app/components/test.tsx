@@ -2,7 +2,6 @@
 
 import { Button, Flex, Heading } from "@chakra-ui/react";
 import { useStoryClient } from "../contexts/useStoryClient";
-import { ConnectButton } from "@rainbow-me/rainbowkit";
 import { stringToHex } from "viem";
 import { mintNFT } from "./mintNft";
 import { useState } from "react";
@@ -44,7 +43,6 @@ export default function Test() {
             alignItems="center"
             width="100%">
             <Heading>Trying it out</Heading>
-            <ConnectButton />
             <Button onClick={handleButtonClick}>Log client</Button>
         </Flex>
     );
