@@ -29,7 +29,7 @@ export const publicClient = createPublicClient({
     transport: http()
 })
 
-export const walletClient = createWalletClient({
+export const walletClient = typeof window !== 'undefined' ? createWalletClient({
     chain: sepolia,
     transport: custom(window.ethereum!)
-});
+}) : null;

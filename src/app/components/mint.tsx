@@ -4,6 +4,8 @@ import abi from "../../contracts/swe.abi";
 
 export async function mint(): Promise<string> {
 
+    if (!walletClient) return "Wallet Client not defined";
+
     const [account] = await walletClient.getAddresses();
 
     const { result } = await publicClient.simulateContract({
