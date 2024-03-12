@@ -5,19 +5,20 @@ import { mint } from "./mint";
 import { registerRootIp } from "./registerRoot";
 import { StoryClient } from "@story-protocol/core-sdk";
 import { PublicClient, WalletClient } from "viem";
+import { useContext } from "react";
+import { Web3Context } from "../contexts/web3Provider";
 
 export default function MintPage({
     story,
-    publicCli,
-    walletCli
 }: {
     story: StoryClient | undefined,
-    publicCli: PublicClient | undefined,
-    walletCli: WalletClient | undefined
 }) {
 
+    const walletClient: WalletClient = useContext(Web3Context)[0];
+    const publicClient: PublicClient = useContext(Web3Context)[1];
+
     const handleMint = async () => {
-        const result = await mint(publicCli!, walletCli!);
+        const result = await mint(publicClient!, walletClient);
         console.log("the result is ", result)
     };
 
