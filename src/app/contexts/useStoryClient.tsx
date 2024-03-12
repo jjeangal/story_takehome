@@ -5,24 +5,21 @@ import {
 import { createWalletClient, http, custom, createPublicClient } from "viem";
 import { sepolia } from 'viem/chains'
 import { useAccount } from "wagmi";
-import { JsonRpcAccount } from "viem";
-import 'viem/window';
 
-export function useStoryClient(): { client: StoryClient } {
+export function useStoryClient(): { client: StoryClient | null } {
 
     const acc = useAccount();
+    let client = null;
 
-    const account: JsonRpcAccount = {
-        address: acc.address as `0x${string}`,
-        type: 'json-rpc'
-    };
+    if (acc && acc.address) {
 
-    const config: StoryConfig = {
-        account,
-        transport: http(process.env.NEXT_PUBLIC_RPC_PROVIDER_URL),
+        const config: StoryConfig = {
+            account: acc.address as `0x${string}`,
+            transport: http(process.env.NEXT_PUBLIC_RPC_PROVIDER_URL),
+        }
+
+        client = StoryClient.newClient(config);
     }
-
-    const client = StoryClient.newClient(config);
 
     return { client };
 }

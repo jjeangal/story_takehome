@@ -2,7 +2,7 @@ import { Address } from "viem";
 import { publicClient, walletClient } from "../contexts/useStoryClient";
 import abi from "../../contracts/swe.abi";
 
-export async function mintNFT(): Promise<string> {
+export async function mint(): Promise<string> {
 
     const [account] = await walletClient.getAddresses();
 
@@ -22,7 +22,7 @@ export async function mintNFT(): Promise<string> {
         abi: abi
     });
 
-    let tokenId = result!.toString();
+    let tokenId = (result as string).toString();
 
     console.log(`Minted NFT successful with hash: ${hash}`);
     console.log(`Minted NFT tokenId: ${tokenId}`);

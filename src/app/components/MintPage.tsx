@@ -1,15 +1,16 @@
 'use client';
 
 import { Button, Flex } from "@chakra-ui/react";
-import { useStoryClient } from "../contexts/useStoryClient";
-import { mintNFT } from "./mintNft";
+import { mint } from "./mint";
 import { registerRootIp } from "./registerRoot";
+import { useStoryClient } from "../contexts/useStoryClient";
 
-export default function Test() {
+export default function MintPage() {
+
     const { client } = useStoryClient();
 
     const handleMint = async () => {
-        const result = await mintNFT();
+        const result = await mint();
         console.log("the result is ", result)
     };
 
@@ -24,8 +25,8 @@ export default function Test() {
             justifyContent="center"
             alignItems="center"
             width="100%">
-            <Button onClick={handleMint}>Log client</Button>
-            <Button onClick={handleRegisterRoot}>Register Root</Button>
+            <Button onClick={handleMint}>Mint Nft</Button>
+            <Button onClick={handleRegisterRoot}>Register Root IP</Button>
         </Flex>
     );
 }

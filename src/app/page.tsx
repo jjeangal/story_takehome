@@ -1,5 +1,5 @@
 import { Flex, Heading } from "@chakra-ui/react";
-import Test from "./components/test";
+import MintPage from "./components/MintPage";
 import { ConnectButton } from "@rainbow-me/rainbowkit";
 
 export default function Home() {
@@ -11,7 +11,7 @@ export default function Home() {
       width="100%">
       <Heading>Story Protocol</Heading>
       <ConnectButton />
-      <Test />
+      <MintPage />
     </Flex>
   );
 }
