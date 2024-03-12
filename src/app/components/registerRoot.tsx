@@ -7,7 +7,7 @@ export async function registerRootIp(client: StoryClient) {
 
     const response = await client.ipAsset.registerRootIp({
         tokenContractAddress: process.env.NEXT_PUBLIC_NFT_CONTRACT_ADDRESS as Address,
-        tokenId: "2",
+        tokenId: "4",
         txOptions: { waitForTransaction: true },
         uri: "https://gateway.pinata.cloud/ipfs/Qm",
     });

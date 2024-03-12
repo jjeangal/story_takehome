@@ -7,7 +7,6 @@ import {
     getDefaultWallets,
     getDefaultConfig,
 } from '@rainbow-me/rainbowkit';
-import { createPublicClient, createWalletClient, custom, http } from 'viem';
 import {
     argentWallet,
     trustWallet,
@@ -16,6 +15,7 @@ import {
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { WagmiProvider } from 'wagmi';
 import { sepolia } from 'wagmi/chains'
+import { ClientsProvider } from './clientsProvider';
 
 const { wallets } = getDefaultWallets();
 
@@ -35,28 +35,16 @@ const config = getDefaultConfig({
 
 const queryClient = new QueryClient();
 
-export const Web3Context = React.createContext<any>(null);
-
 export function Web3Provider({ children }: { children: React.ReactNode }) {
-
-    const walletClient = createWalletClient({
-        chain: sepolia,
-        transport: typeof window !== 'undefined' ? custom(window.ethereum!) : http(),
-    })
-
-    const publicClient = createPublicClient({
-        chain: sepolia,
-        transport: http()
-    })
 
     return (
         <ChakraProvider>
             <WagmiProvider config={config}>
                 <QueryClientProvider client={queryClient}>
                     <RainbowKitProvider>
-                        <Web3Context.Provider value={[walletClient, publicClient]}>
+                        <ClientsProvider>
                             {children}
-                        </Web3Context.Provider>
+                        </ClientsProvider>
                     </RainbowKitProvider>
                 </QueryClientProvider>
             </WagmiProvider>

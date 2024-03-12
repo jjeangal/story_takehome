@@ -6,16 +6,13 @@ import { registerRootIp } from "./registerRoot";
 import { StoryClient } from "@story-protocol/core-sdk";
 import { PublicClient, WalletClient } from "viem";
 import { useContext } from "react";
-import { Web3Context } from "../contexts/web3Provider";
+import { ClientsContext } from "../contexts/clientsProvider";
 
-export default function MintPage({
-    story,
-}: {
-    story: StoryClient | undefined,
-}) {
+export default function MintPage() {
 
-    const walletClient: WalletClient = useContext(Web3Context)[0];
-    const publicClient: PublicClient = useContext(Web3Context)[1];
+    const walletClient: WalletClient = useContext(ClientsContext)[0];
+    const publicClient: PublicClient = useContext(ClientsContext)[1];
+    const storyClient: StoryClient | undefined = useContext(ClientsContext)[2];
 
     const handleMint = async () => {
         const result = await mint(publicClient!, walletClient);
@@ -23,7 +20,7 @@ export default function MintPage({
     };
 
     const handleRegisterRoot = async () => {
-        const result = await registerRootIp(story!);
+        const result = await registerRootIp(storyClient!);
         console.log("the result is ", result);
     }
 
