@@ -12,7 +12,6 @@ export function useStoryClient(): { client: StoryClient | null } {
     let client = null;
 
     if (acc && acc.address) {
-
         const config: StoryConfig = {
             account: acc.address as `0x${string}`,
             transport: http(process.env.NEXT_PUBLIC_RPC_PROVIDER_URL),

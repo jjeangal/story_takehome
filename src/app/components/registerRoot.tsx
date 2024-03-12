@@ -10,9 +10,8 @@ export async function registerRootIp(client: StoryClient): Promise<[string, stri
             uri: "https://gateway.pinata.cloud/ipfs/Qm",
         });
 
-        console.log(`Root IPA created at transaction hash ${response.txHash}, IPA ID: ${response.ipId}`)
-
         if (response.txHash && response.ipId) {
+            console.log(`Root IPA created at transaction hash ${response.txHash}, IPA ID: ${response.ipId}`)
             return [response.txHash, response.ipId];
         } else {
             console.error('Transaction hash or IP ID is undefined');
