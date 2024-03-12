@@ -1,14 +1,15 @@
-import { Address } from "viem";
-import { publicClient, walletClient } from "../contexts/useStoryClient";
+import { Address, PublicClient, WalletClient } from "viem";
 import abi from "../../contracts/swe.abi";
+import { sepolia } from "viem/chains";
 
-export async function mint(): Promise<string> {
+export async function mint(publicCli: PublicClient, walletCli: WalletClient): Promise<string> {
 
-    if (!walletClient) return "Wallet Client not defined";
+    if (!walletCli) return "Wallet Client not defined";
+    if (!publicCli) return "Public Client not defined";
 
-    const [account] = await walletClient.getAddresses();
+    const [account] = await walletCli.getAddresses();
 
-    const { result } = await publicClient.simulateContract({
+    const { result } = await publicCli.simulateContract({
         address: process.env.NEXT_PUBLIC_NFT_CONTRACT_ADDRESS as Address,
         functionName: 'mint',
         account,
@@ -16,12 +17,13 @@ export async function mint(): Promise<string> {
         abi: abi
     })
 
-    const hash = await walletClient.writeContract({
+    const hash = await walletCli.writeContract({
         address: process.env.NEXT_PUBLIC_NFT_CONTRACT_ADDRESS as Address,
         functionName: 'mint',
         account: account,
         args: ["https://www.taketheredbean.com/"],
-        abi: abi
+        abi: abi,
+        chain: sepolia
     });
 
     let tokenId = (result as string).toString();
