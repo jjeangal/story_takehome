@@ -10,12 +10,12 @@ import { ClientsContext } from "../contexts/clientsProvider";
 
 export default function MintPage() {
 
-    const walletClient: WalletClient = useContext(ClientsContext)[0];
-    const publicClient: PublicClient = useContext(ClientsContext)[1];
-    const storyClient: StoryClient | undefined = useContext(ClientsContext)[2];
+    const walletClient: WalletClient | undefined = useContext(ClientsContext)?.walletClient;
+    const publicClient: PublicClient | undefined = useContext(ClientsContext)?.publicClient;
+    const storyClient: StoryClient | undefined = useContext(ClientsContext)?.storyClient;
 
     const handleMint = async () => {
-        const result = await mint(publicClient!, walletClient);
+        const result = await mint(publicClient!, walletClient!);
         console.log("the result is ", result)
     };
 

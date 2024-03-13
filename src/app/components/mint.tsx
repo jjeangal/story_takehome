@@ -4,8 +4,8 @@ import { sepolia } from "viem/chains";
 
 export async function mint(publicCli: PublicClient, walletCli: WalletClient): Promise<string> {
 
-    if (!walletCli) return "Wallet Client not defined";
-    if (!publicCli) return "Public Client not defined";
+    if (!walletCli) return "Wallet Client undefined";
+    if (!publicCli) return "Public Client undefined";
 
     const [account] = await walletCli.getAddresses();
 

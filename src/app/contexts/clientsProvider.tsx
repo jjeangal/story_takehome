@@ -12,7 +12,7 @@ interface ClientsContextType {
     publicClient: PublicClient | undefined;
 }
 
-export const ClientsContext = React.createContext<any>(null);
+export const ClientsContext = React.createContext<ClientsContextType | undefined>(undefined);
 
 export function ClientsProvider({ children }: { children: React.ReactNode }) {
     const [storyClient, setStoryClient] = useState<StoryClient | undefined>(undefined);
@@ -44,7 +44,7 @@ export function ClientsProvider({ children }: { children: React.ReactNode }) {
     })
 
     return (
-        <ClientsContext.Provider value={[walletClient, publicClient, storyClient]}>
+        <ClientsContext.Provider value={{ walletClient, publicClient, storyClient }}>
             {children}
         </ClientsContext.Provider>
     );
