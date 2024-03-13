@@ -6,7 +6,7 @@ import { registerRootIp } from "./registerRoot";
 import { StoryClient } from "@story-protocol/core-sdk";
 import { PublicClient, WalletClient } from "viem";
 import { useContext } from "react";
-import { ClientsContext } from "../contexts/clientsProvider";
+import { ClientsContext } from "../providers/clientsProvider";
 
 export default function MintPage() {
 

@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Web3Provider } from "@/app/contexts/web3Provider";
+import { Web3Provider } from "@/app/providers/web3Provider";
 import '@rainbow-me/rainbowkit/styles.css';
 
 export const metadata: Metadata = {
