@@ -12,7 +12,7 @@ export async function POST(req: NextRequest) {
         prompt: prompt || "story protocol",
         model: "dall-e-2",
         quality: 'standard', // or 'hd' -> only for dall-e-3
-        size: '1024x1024', //'1024x1024' | '1792x1024' | '1024x1792' -> for dall-e-3
+        size: '512x512', //'1024x1024' | '1792x1024' | '1024x1792' -> for dall-e-3
         style: 'natural', // or natural
         n: 1, // number of images to generate
     });

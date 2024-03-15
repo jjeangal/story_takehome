@@ -20,7 +20,7 @@ export default function RootLayout({
         <Web3Provider>
           <Flex w="100vw" height="100vh" flexDirection="column">
             <Header />
-            <Flex>
+            <Flex h="92%">
               {children}
             </Flex>
           </Flex>

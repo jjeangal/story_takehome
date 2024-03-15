@@ -10,7 +10,8 @@ export default function Home() {
       flexDirection="column"
       justifyContent="center"
       alignItems="center"
-      width="100%"
+      w="100%"
+      h="100%"
     >
       <MintPage />
     </Flex>

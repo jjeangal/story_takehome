@@ -6,7 +6,7 @@ export default function Header() {
     return (
         <Flex height="8%" width="100%" justifyContent="space-between" alignItems="center">
             <Flex flex={1} h="100%" textAlign="left" alignItems="center">
-                <Text p="4%" fontSize="x-large">SWE</Text>
+                <Text fontSize="x-large" p="10%">SWE</Text>
             </Flex>
             <Flex flex={1} h="100%" justifyContent="center" alignItems="center">
                 <PageTabs />
