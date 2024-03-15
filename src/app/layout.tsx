@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { Web3Provider } from "@/app/providers/web3Provider";
 import '@rainbow-me/rainbowkit/styles.css';
 import { Flex } from "@chakra-ui/react";
-import Header from "./components/Header";
+import Header from "./components/header/Header";
 
 export const metadata: Metadata = {
   title: "Story Protocol Internship Take Home",

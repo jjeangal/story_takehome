@@ -1,12 +1,13 @@
 'use client';
 
-import { Button, Box, Flex, Input } from "@chakra-ui/react";
+import { Button, Box, Flex, Text, Input } from "@chakra-ui/react";
 import { mint } from "./mint";
 import { registerRootIp } from "./registerRoot";
 import { StoryClient } from "@story-protocol/core-sdk";
 import { PublicClient, WalletClient } from "viem";
 import { useContext, useEffect, useState } from "react";
 import { ClientsContext } from "../providers/clientsProvider";
+import CreatePolicy from "./createPolicy";
 
 export default function MintPage() {
     const walletClient: WalletClient | undefined = useContext(ClientsContext)?.walletClient;
@@ -14,9 +15,10 @@ export default function MintPage() {
     const storyClient: StoryClient | undefined = useContext(ClientsContext)?.storyClient;
 
     const [prompt, setPrompt] = useState('');
-    const [image, setImage] = useState<Blob>();
     const [isGenerating, setIsGenerating] = useState(false);
+    const [image, setImage] = useState<Blob>();
     const [ipfsHash, setIpfsHash] = useState<string>("");
+    const [nftId, setNftId] = useState<string>("");
 
     useEffect(() => {
         console.log("starting");
@@ -103,6 +105,9 @@ export default function MintPage() {
                 >
                     {image && <img src={URL.createObjectURL(image)} alt="Generated" />}
                 </Box>
+                <Box>
+
+                </Box>
                 <Input
                     value={prompt}
                     onChange={(e) => setPrompt(e.target.value)}
@@ -128,10 +133,34 @@ export default function MintPage() {
                 justifyContent="center"
                 alignItems="center"
                 width="50%"
+                h="100%"
             >
-                <Button onClick={handleUploadFile} mb={4}>Upload Image</Button>
-                <Button onClick={handleMint} mb={4}>Mint Nft</Button>
-                <Button onClick={handleRegisterRoot}>Register Root IP</Button>
+                <Flex
+                    flexDirection="row"
+                    justifyContent="space-between"
+                    alignItems="center"
+                    w="100%"
+                    h="40%"
+                >
+                    <Flex flexDirection="column" m="5%">
+                        <Text fontSize="large" mb={4}>2 - Upload generated image to IPFS</Text>
+                        <Button onClick={handleUploadFile} mb={4}>Upload</Button>
+                        <Text fontSize="small" mb={4}>IPFS Hash: {ipfsHash ? ipfsHash : "..."}</Text>
+                    </Flex>
+                    <Flex flexDirection="column" m="5%">
+                        <Text fontSize="large" mb={4}>3 - Mint generated image as an Nft</Text>
+                        <Button onClick={handleMint} mb={4}>Mint</Button>
+                        <Text fontSize="small" mb={4}>Nft Id: {nftId ? nftId : "..."}</Text>
+                    </Flex>
+                </Flex>
+                <Flex
+                    flexDirection="column"
+                    w="100%"
+                    h="60%"
+                >
+                    <CreatePolicy />
+                    <Button mt={4} onClick={handleRegisterRoot}>Register Root IP</Button>
+                </Flex>
             </Flex>
         </Flex>
     );
