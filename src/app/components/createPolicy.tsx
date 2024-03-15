@@ -1,10 +1,10 @@
-import { Flex, FormControl, FormLabel, Grid, Switch, NumberInput, Textarea, Button } from "@chakra-ui/react";
+import { Flex, FormControl, Text, FormLabel, Grid, Switch, NumberInput, Textarea, Button } from "@chakra-ui/react";
 import { RegisterPILPolicyRequest, StoryClient } from "@story-protocol/core-sdk";
 import { useContext, useState } from "react";
 import { ClientsContext } from "../providers/clientsProvider";
 import { SSG_FALLBACK_EXPORT_ERROR } from "next/dist/lib/constants";
 
-export default function CreatePolicy() {
+export default function CreatePolicy({ setPolicyId }: { setPolicyId: React.Dispatch<React.SetStateAction<string>> }) {
 
     const [transferable, setTransferable] = useState(true);
     const [attribution, setAttribution] = useState(true);
@@ -17,8 +17,6 @@ export default function CreatePolicy() {
     const [commercialRevShare, setCommercialRevShare] = useState<number | undefined>();
     const [territories, setTerritories] = useState<string[] | undefined>();
     const [distributionChannels, setDistributionChannels] = useState<string[] | undefined>();
-
-    const [policyId, setPolicyId] = useState<string>("");
 
     const storyClient: StoryClient | undefined = useContext(ClientsContext)?.storyClient;
 
@@ -53,11 +51,12 @@ export default function CreatePolicy() {
     };
 
     return (
-        <Flex>
-            <Grid as="form" templateColumns="repeat(3, 1fr)" rowGap={0} h="100%" w="100%" m="auto" columnGap={8} >
+        <Flex flexDirection="column" mr={4} textColor="white" borderColor="gray.800" borderWidth={1} p={4} borderRadius="xl">
+            <Text mb={4} textColor="gray.800" fontSize="large">4 - Choose PIL Policy Parameters</Text>
+            <Grid as="form" backgroundColor="gray.700" templateColumns="repeat(3, 1fr)" borderRadius="lg" rowGap={0} p={4} h="100%" w="100%" columnGap={8} >
                 <FormControl display="flex" alignItems="center" mb={4}>
                     <FormLabel mb="0" fontSize="small">Transferable:</FormLabel>
-                    <Switch size="sm" colorScheme="yellow" isChecked={transferable} onChange={(e) => setTransferable(e.target.checked)} />
+                    <Switch size="sm" isChecked={transferable} onChange={(e) => setTransferable(e.target.checked)} />
                 </FormControl>
                 <FormControl display="flex" alignItems="center" mb={4}>
                     <FormLabel mb="0" fontSize="small">Attribution:</FormLabel>
@@ -100,7 +99,7 @@ export default function CreatePolicy() {
                     <Textarea size="sm" fontSize="sm" value={distributionChannels?.join(', ') || ''} onChange={(e) => setDistributionChannels(e.target.value.split(', '))} />
                 </FormControl>
                 <Flex justifyContent="left" alignItems="center">
-                    <Button fontSize="sm" size="sm" w="50%" onClick={handleCreatePolicy} ml={4}>
+                    <Button textColor="gray.700" backgroundColor="white" fontSize="sm" size="sm" w="50%" onClick={handleCreatePolicy} ml={4}>
                         Create Policy
                     </Button>
                 </Flex>

@@ -19,6 +19,7 @@ export default function MintPage() {
     const [image, setImage] = useState<Blob>();
     const [ipfsHash, setIpfsHash] = useState<string>("");
     const [nftId, setNftId] = useState<string>("");
+    const [policyId, setPolicyId] = useState<string>("");
 
     useEffect(() => {
         console.log("starting");
@@ -101,7 +102,7 @@ export default function MintPage() {
                     width="512px"
                     height="512px"
                     border="1px"
-                    borderColor="gray.400"
+                    borderColor="gray.800"
                 >
                     {image && <img src={URL.createObjectURL(image)} alt="Generated" />}
                 </Box>
@@ -112,12 +113,17 @@ export default function MintPage() {
                     value={prompt}
                     onChange={(e) => setPrompt(e.target.value)}
                     placeholder="Write a prompt for AI generation"
+                    _placeholder={{ color: 'gray.700' }}
+                    textColor="gray.800"
+                    borderColor="gray.800"
                     m={4}
                     h="5%"
                     w="512px"
                 />
                 <Button
                     isDisabled={isGenerating}
+                    backgroundColor="gray.700"
+                    textColor="white"
                     onClick={() => {
                         setIsGenerating(true);
                         handleImageGeneration();
@@ -142,14 +148,14 @@ export default function MintPage() {
                     w="100%"
                     h="40%"
                 >
-                    <Flex flexDirection="column" m="5%">
+                    <Flex flexDirection="column" textColor="gray.800" p={4} borderWidth={1} borderColor="gray.800" borderRadius="xl">
                         <Text fontSize="large" mb={4}>2 - Upload generated image to IPFS</Text>
-                        <Button onClick={handleUploadFile} mb={4}>Upload</Button>
+                        <Button textColor="white" backgroundColor="gray.700" onClick={handleUploadFile} mb={4}>Upload</Button>
                         <Text fontSize="small" mb={4}>IPFS Hash: {ipfsHash ? ipfsHash : "..."}</Text>
                     </Flex>
-                    <Flex flexDirection="column" m="5%">
+                    <Flex flexDirection="column" textColor="gray.800" p={4} borderWidth={1} borderColor="gray.800" borderRadius="xl" mr={4}>
                         <Text fontSize="large" mb={4}>3 - Mint generated image as an Nft</Text>
-                        <Button onClick={handleMint} mb={4}>Mint</Button>
+                        <Button textColor="white" backgroundColor="gray.700" onClick={handleMint} mb={4}>Mint</Button>
                         <Text fontSize="small" mb={4}>Nft Id: {nftId ? nftId : "..."}</Text>
                     </Flex>
                 </Flex>
@@ -159,10 +165,10 @@ export default function MintPage() {
                     w="100%"
                     h="60%"
                 >
-                    <CreatePolicy />
-                    <Button w="25%" mt={8} onClick={handleRegisterRoot}>Register Root IP</Button>
+                    <CreatePolicy setPolicyId={setPolicyId} />
+                    <Button backgroundColor="gray.700" textColor="white" w="25%" mt={8} onClick={handleRegisterRoot}>Register Root IP</Button>
                 </Flex>
             </Flex>
-        </Flex>
+        </Flex >
     );
 }

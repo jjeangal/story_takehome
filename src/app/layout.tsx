@@ -18,7 +18,7 @@ export default function RootLayout({
     <html lang="en">
       <body>
         <Web3Provider>
-          <Flex w="100vw" height="100vh" flexDirection="column">
+          <Flex backgroundColor="white" w="100vw" height="100vh" flexDirection="column">
             <Header />
             <Flex h="92%">
               {children}

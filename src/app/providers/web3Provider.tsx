@@ -1,7 +1,8 @@
 'use client';
 
 import * as React from 'react';
-import { ChakraProvider } from '@chakra-ui/react'
+import '@fontsource/baskervville';
+import { ChakraProvider, extendTheme } from '@chakra-ui/react'
 import {
     RainbowKitProvider,
     getDefaultWallets,
@@ -33,12 +34,19 @@ const config = getDefaultConfig({
     ssr: true,
 });
 
+const theme = extendTheme({
+    fonts: {
+        heading: "Baskervville, sans-serif",
+        body: "Baskervville, sans-serif"
+    },
+});
+
 const queryClient = new QueryClient();
 
 export function Web3Provider({ children }: { children: React.ReactNode }) {
 
     return (
-        <ChakraProvider>
+        <ChakraProvider theme={theme}>
             <WagmiProvider config={config}>
                 <QueryClientProvider client={queryClient}>
                     <RainbowKitProvider>
