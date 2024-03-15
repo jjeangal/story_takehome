@@ -5,7 +5,9 @@ import PageTabs from "./PageTabs";
 export default function Header() {
     return (
         <Flex height="8%" width="100%" justifyContent="space-between" alignItems="center">
-            <Text flex={1} h="100%" textAlign="left">SWE</Text>
+            <Flex flex={1} h="100%" textAlign="left" alignItems="center">
+                <Text p="4%" fontSize="x-large">SWE</Text>
+            </Flex>
             <Flex flex={1} h="100%" justifyContent="center" alignItems="center">
                 <PageTabs />
             </Flex>
