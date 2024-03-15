@@ -14,7 +14,7 @@ export default function MintPage() {
     const storyClient: StoryClient | undefined = useContext(ClientsContext)?.storyClient;
 
     const [prompt, setPrompt] = useState('');
-    const [image, setImage] = useState<File>();
+    const [image, setImage] = useState<Blob>();
     const [ipfsHash, setIpfsHash] = useState<string>("");
 
     const handleMint = async () => {
@@ -41,10 +41,14 @@ export default function MintPage() {
         const { image_b64 } = await response.json();
         const responseFetch = await fetch(`data:image/png;base64,${image_b64}`);
         const blob = await responseFetch.blob();
-        const file = new File([blob], 'image.png', { type: 'image/png' });
-        console.log("file", file);
-        setImage(file);
+        setImage(blob);
     }
+
+    // const reader = new FileReader();
+    // reader.onloadend = function () {
+    //     const arrayBuffer = reader.result;
+    //     console.log(arrayBuffer);
+    // }
 
     const handleUploadFile = async () => {
         if (!image) {
@@ -52,20 +56,19 @@ export default function MintPage() {
             return;
         }
 
-        const formData = new FormData();
-        formData.append('file', image);
+        //const buff = reader.readAsArrayBuffer(image);
 
-        const response = await fetch("/api/pinata/uploadFile", {
-            method: "POST",
-            body: formData,
-        });
+        // const response = await fetch("/api/pinata/uploadFile", {
+        //     method: "POST",
+        //     body: formData,
+        // });
 
-        console.log("response", response);
-        if (!response.ok) return 'API call failed:' + response;
+        // console.log("response", response);
+        // if (!response.ok) return 'API call failed:' + response;
 
-        const { hash } = await response.json();
-        setIpfsHash(hash);
-        console.log("hash", hash);
+        // const { hash } = await response.json();
+        // setIpfsHash(hash);
+        // console.log("hash", hash);
     }
 
     return (

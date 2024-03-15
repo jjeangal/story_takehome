@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import { Web3Provider } from "@/app/providers/web3Provider";
 import '@rainbow-me/rainbowkit/styles.css';
+import { Flex } from "@chakra-ui/react";
+import Header from "./components/Header";
 
 export const metadata: Metadata = {
   title: "Story Protocol Internship Take Home",
@@ -16,9 +18,14 @@ export default function RootLayout({
     <html lang="en">
       <body>
         <Web3Provider>
-          {children}
+          <Flex w="100vw" height="100vh" flexDirection="column">
+            <Header />
+            <Flex>
+              {children}
+            </Flex>
+          </Flex>
         </Web3Provider>
       </body>
-    </html>
+    </html >
   );
 }
