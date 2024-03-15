@@ -155,11 +155,12 @@ export default function MintPage() {
                 </Flex>
                 <Flex
                     flexDirection="column"
+                    alignItems="center"
                     w="100%"
                     h="60%"
                 >
                     <CreatePolicy />
-                    <Button mt={4} onClick={handleRegisterRoot}>Register Root IP</Button>
+                    <Button w="25%" mt={8} onClick={handleRegisterRoot}>Register Root IP</Button>
                 </Flex>
             </Flex>
         </Flex>
