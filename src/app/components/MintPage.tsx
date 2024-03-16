@@ -16,19 +16,42 @@ export default function MintPage() {
     const storyClient: StoryClient | undefined = useContext(ClientsContext)?.storyClient;
 
     const [imageUrl, setImageUrl] = useState<string>("https://gateway.pinata.cloud/ipfs/QmdJrAhTiXPa98xaxWKZs4dfahd8SZV9oqsHyUfjhq3G2X");
-    const [ipfsHash, setIpfsHash] = useState<string>("");
-    const [nftId, setNftId] = useState<string>("");
-    const [uploading, setUploading] = useState<boolean>(false);
+
     const [policyId, setPolicyId] = useState<string>("");
+    const [nftId, setNftId] = useState<string>("");
+
+    const [uploading, setUploading] = useState<boolean>(false);
+    const [registering, setRegistering] = useState<boolean>(false);
+
+    const [ipfsHash, setIpfsHash] = useState<string>("");
+    const [mintHashReceipt, setMintHashReceipt] = useState<string>("");
+    const [rootHashReceipt, setRootHashReceipt] = useState<string>("");
 
     const toast = useToast();
 
     const handleRegisterRoot = async () => {
-        const result = await registerRootIp(storyClient!, policyId, ipfsHash, nftId, toast);
-        console.log("the result is ", result);
+        if (mintHashReceipt === "") {
+            toast({
+                title: 'Await Mint.',
+                description: "Nft not minted yet. Please mint an nft or wait for the transaction to finalize.",
+                status: 'error',
+                duration: 6000,
+                isClosable: true,
+            })
+            return "Mint an nft first";
+        }
+
+        setRegistering(true);
+        const result = await registerRootIp(storyClient!, publicClient!, policyId, ipfsHash, nftId);
+        if (result) {
+            setRegistering(false);
+            setRootHashReceipt(result);
+        };
     }
 
     const handleUploadFile = async () => {
+        if (!walletClient || !publicClient) return;
+
         if (imageUrl === "https://gateway.pinata.cloud/ipfs/QmdJrAhTiXPa98xaxWKZs4dfahd8SZV9oqsHyUfjhq3G2X") {
             toast({
                 title: 'Generate first.',
@@ -57,7 +80,10 @@ export default function MintPage() {
         setIpfsHash("https://gateway.pinata.cloud/ipfs/" + hash);
 
         const mintHash = await mint(walletClient, publicClient, setNftId, hash);
-        console.log("the hash of the mint is: ", mintHash);
+
+        const receipt = await publicClient.waitForTransactionReceipt({ hash: mintHash as `0x${string}` });
+
+        setMintHashReceipt(receipt);
         setUploading(false);
     }
 
@@ -83,34 +109,37 @@ export default function MintPage() {
                     alignItems="center"
                     w="100%"
                     h="35%"
-                    mr={8}
+                    p={4}
                 >
                     <Flex flexDirection="column" textColor="gray.800" p={4} borderWidth={1} borderColor="gray.800" borderRadius="xl" w="100%">
-                        <Text fontSize="large" mb={4}>2 - Upload your image to IPFS and mint it as an NFT</Text>
-                        <Button
-                            isDisabled={uploading}
-                            textColor="white"
-                            backgroundColor="gray.700"
-                            onClick={() => {
-                                handleUploadFile();
-                            }}
-                            _hover={
-                                {
+                        <Flex direction="row" align="center" justify="space-between" mb={4}>
+                            <Text fontSize="large">2 - Upload your image to IPFS and mint it as an NFT: </Text>
+                            <Button
+                                isDisabled={uploading}
+                                textColor="white"
+                                backgroundColor="gray.700"
+                                onClick={() => {
+                                    handleUploadFile();
+                                }}
+                                _hover={{
                                     backgroundColor: "gray.600"
-                                }
-                            }
-                            mb={4}
-                        >Upload</Button>
-                        <Text fontSize="small" mb={2}>
+                                }}
+                                w="25%"
+                                mr={4}
+                            >
+                                Upload
+                            </Button>
+                        </Flex>
+                        <Text fontSize="small">
                             {ipfsHash ?
                                 <>
                                     IPFS Hash:{" "}
                                     <Link href={ipfsHash} isExternal>
                                         {ipfsHash}
                                     </Link>
-                                </> : "IPFS Hash: ..."}
+                                </> : ""}
                         </Text>
-                        <Text fontSize="small">{nftId ? "NFT ID: " + nftId : "NFT ID: ..."}</Text>
+                        <Text fontSize="small">{nftId ? "NFT ID: " + nftId : ""}</Text>
                     </Flex>
                 </Flex>
                 <Flex
@@ -119,11 +148,11 @@ export default function MintPage() {
                     justifyContent="center"
                     w="100%"
                     h="60%"
-                    mr={8}
-                    pb={4}
+                    p={4}
                 >
                     <CreatePolicy setPolicyId={setPolicyId} />
                     <Button
+                        isDisabled={registering}
                         backgroundColor="gray.700"
                         textColor="white"
                         w="25%"
@@ -135,6 +164,7 @@ export default function MintPage() {
                             }
                         }
                     >Register Root IP</Button>
+                    <Text>{rootHashReceipt ? "Transactio hash: " + rootHashReceipt : ""}</Text>
                 </Flex>
             </Flex>
         </Flex >

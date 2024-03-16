@@ -26,7 +26,7 @@ export default function CreatePolicy({ setPolicyId }: { setPolicyId: React.Dispa
             transferable: transferable,
             attribution: attribution,
             commercialUse: commercialUse,
-            commercialAttribution: commercialAttribution,
+            //commercialAttribution: commercialAttribution,
             derivativesAttribution: derivativesAttribution,
             derivativesAllowed: derivativesAllowed,
             derivativesApproval: derivativesApproval,

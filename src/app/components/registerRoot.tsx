@@ -1,26 +1,15 @@
 import { StoryClient } from "@story-protocol/core-sdk";
-import { Address } from "viem";
+import { Address, PublicClient } from "viem";
 
 export async function registerRootIp(
     client: StoryClient,
+    publicClient: PublicClient,
     policyId: string,
     ipfsHash: string,
-    nftId: string,
-    toast: any
+    nftId: string
 ) {
     if (client === undefined) return;
     if (ipfsHash === "") return;
-
-    if (nftId == "") {
-        toast({
-            title: 'Mint first.',
-            description: "You need to mint an NFT before registering one.",
-            status: 'error',
-            duration: 6000,
-            isClosable: true,
-        })
-        return "Mint an nft first";
-    };
 
     const response = await client.ipAsset.registerRootIp({
         tokenContractAddress: process.env.NEXT_PUBLIC_NFT_CONTRACT_ADDRESS as Address,
@@ -30,6 +19,6 @@ export async function registerRootIp(
     });
 
     console.log(`Root IPA created at transaction hash ${response.txHash}, IPA ID: ${response.ipId}`)
-
-    return response;
+    const receipt = await publicClient.waitForTransactionReceipt({ hash: response.txHash as `0x${string}` });
+    return receipt;
 }
