@@ -39,6 +39,11 @@ export default function ImageGeneration({ imageUrl, setImageUrl }: { imageUrl: s
             </Box>
             <Input
                 value={prompt}
+                _hover={
+                    {
+                        borderColor: "gray.200"
+                    }
+                }
                 onChange={(e) => setPrompt(e.target.value)}
                 placeholder="Write a prompt for AI generation"
                 _placeholder={{ color: 'gray.700' }}
@@ -56,6 +61,11 @@ export default function ImageGeneration({ imageUrl, setImageUrl }: { imageUrl: s
                     setIsGenerating(true);
                     handleImageGeneration();
                 }}
+                _hover={
+                    {
+                        backgroundColor: "gray.600"
+                    }
+                }
                 h="5%"
                 mb={4}
             >
