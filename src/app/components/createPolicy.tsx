@@ -2,7 +2,6 @@ import { Flex, FormControl, Text, FormLabel, Grid, Switch, NumberInput, Textarea
 import { RegisterPILPolicyRequest, StoryClient } from "@story-protocol/core-sdk";
 import { useContext, useState } from "react";
 import { ClientsContext } from "../providers/clientsProvider";
-import { SSG_FALLBACK_EXPORT_ERROR } from "next/dist/lib/constants";
 
 export default function CreatePolicy({ setPolicyId }: { setPolicyId: React.Dispatch<React.SetStateAction<string>> }) {
 
