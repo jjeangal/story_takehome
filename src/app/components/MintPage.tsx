@@ -1,6 +1,6 @@
 'use client';
 
-import { Button, Flex, Text, Link } from "@chakra-ui/react";
+import { Button, Flex, Text, Link, useToast } from "@chakra-ui/react";
 import { mint } from "./mint";
 import { registerRootIp } from "./registerRoot";
 import { StoryClient } from "@story-protocol/core-sdk";
@@ -21,8 +21,10 @@ export default function MintPage() {
     const [uploading, setUploading] = useState<boolean>(false);
     const [policyId, setPolicyId] = useState<string>("");
 
+    const toast = useToast();
+
     const handleRegisterRoot = async () => {
-        const result = await registerRootIp(storyClient!);
+        const result = await registerRootIp(storyClient!, policyId, nftId, toast);
         console.log("the result is ", result);
     }
 
@@ -73,9 +75,10 @@ export default function MintPage() {
                     justifyContent="space-between"
                     alignItems="center"
                     w="100%"
-                    h="40%"
+                    h="35%"
+                    mr={8}
                 >
-                    <Flex flexDirection="column" textColor="gray.800" p={4} borderWidth={1} mr={4} borderColor="gray.800" borderRadius="xl" w="100%">
+                    <Flex flexDirection="column" textColor="gray.800" p={4} borderWidth={1} borderColor="gray.800" borderRadius="xl" w="100%">
                         <Text fontSize="large" mb={4}>2 - Upload your image to IPFS and mint it as an NFT</Text>
                         <Button
                             isDisabled={uploading}
@@ -85,6 +88,11 @@ export default function MintPage() {
                                 setUploading(true);
                                 handleUploadFile();
                             }}
+                            _hover={
+                                {
+                                    backgroundColor: "gray.600"
+                                }
+                            }
                             mb={4}
                         >Upload</Button>
                         <Text fontSize="small" mb={4}>
@@ -102,11 +110,25 @@ export default function MintPage() {
                 <Flex
                     flexDirection="column"
                     alignItems="center"
+                    justifyContent="center"
                     w="100%"
                     h="60%"
+                    mr={8}
+                    pb={4}
                 >
                     <CreatePolicy setPolicyId={setPolicyId} />
-                    <Button backgroundColor="gray.700" textColor="white" w="25%" mt={8} onClick={handleRegisterRoot}>Register Root IP</Button>
+                    <Button
+                        backgroundColor="gray.700"
+                        textColor="white"
+                        w="25%"
+                        mt={8}
+                        onClick={handleRegisterRoot}
+                        _hover={
+                            {
+                                backgroundColor: "gray.600"
+                            }
+                        }
+                    >Register Root IP</Button>
                 </Flex>
             </Flex>
         </Flex >
