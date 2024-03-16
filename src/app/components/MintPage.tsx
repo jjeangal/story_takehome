@@ -1,6 +1,6 @@
 'use client';
 
-import { Button, Box, Flex, Text, Input, Image, Link } from "@chakra-ui/react";
+import { Button, Flex, Text, Link } from "@chakra-ui/react";
 import { mint } from "./mint";
 import { registerRootIp } from "./registerRoot";
 import { StoryClient } from "@story-protocol/core-sdk";
