@@ -29,10 +29,17 @@ export default function MintPage() {
     }
 
     const handleUploadFile = async () => {
-        if (!imageUrl) {
-            console.log('No image to upload');
-            return;
+        if (imageUrl === "https://gateway.pinata.cloud/ipfs/QmdJrAhTiXPa98xaxWKZs4dfahd8SZV9oqsHyUfjhq3G2X") {
+            toast({
+                title: 'Upload an image first.',
+                description: "You need to upload an image before minting it.",
+                status: 'error',
+                duration: 6000,
+                isClosable: true,
+            });
+            return "Upload an image first";
         }
+        setUploading(true);
 
         const body = {
             imageUrl: imageUrl
@@ -85,7 +92,6 @@ export default function MintPage() {
                             textColor="white"
                             backgroundColor="gray.700"
                             onClick={() => {
-                                setUploading(true);
                                 handleUploadFile();
                             }}
                             _hover={
@@ -95,7 +101,7 @@ export default function MintPage() {
                             }
                             mb={4}
                         >Upload</Button>
-                        <Text fontSize="small" mb={4}>
+                        <Text fontSize="small" mb={2}>
                             {ipfsHash ?
                                 <>
                                     IPFS Hash:{" "}
@@ -104,7 +110,7 @@ export default function MintPage() {
                                     </Link>
                                 </> : "IPFS Hash: ..."}
                         </Text>
-                        <Text fontSize="small" mb={4}>{nftId ? "NFT ID: " + nftId : "NFT ID: ..."}</Text>
+                        <Text fontSize="small">{nftId ? "NFT ID: " + nftId : "NFT ID: ..."}</Text>
                     </Flex>
                 </Flex>
                 <Flex
