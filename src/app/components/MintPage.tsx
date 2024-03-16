@@ -45,7 +45,7 @@ export default function MintPage() {
         const result = await registerRootIp(storyClient!, publicClient!, policyId, ipfsHash, nftId);
         if (result) {
             setRegistering(false);
-            setRootHashReceipt(result);
+            setRootHashReceipt(result.transactionHash);
         };
     }
 
@@ -151,20 +151,22 @@ export default function MintPage() {
                     p={4}
                 >
                     <CreatePolicy setPolicyId={setPolicyId} />
-                    <Button
-                        isDisabled={registering}
-                        backgroundColor="gray.700"
-                        textColor="white"
-                        w="25%"
-                        mt={8}
-                        onClick={handleRegisterRoot}
-                        _hover={
-                            {
-                                backgroundColor: "gray.600"
+                    {!rootHashReceipt ?
+                        <Button
+                            isDisabled={registering}
+                            backgroundColor="gray.700"
+                            textColor="white"
+                            w="25%"
+                            mt={8}
+                            onClick={handleRegisterRoot}
+                            _hover={
+                                {
+                                    backgroundColor: "gray.600"
+                                }
                             }
-                        }
-                    >Register Root IP</Button>
-                    <Text>{rootHashReceipt ? "Transactio hash: " + rootHashReceipt : ""}</Text>
+                        >Register Root IP</Button> :
+                        <Text>Success! Hash: {rootHashReceipt}</Text>
+                    }
                 </Flex>
             </Flex>
         </Flex >
