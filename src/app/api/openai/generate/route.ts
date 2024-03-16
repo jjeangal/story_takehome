@@ -8,7 +8,7 @@ export async function POST(req: NextRequest) {
     const { prompt } = await req.json();
 
     const response = await openai.images.generate({
-        response_format: 'b64_json', // or 'url'
+        response_format: 'url', // or 'url'
         prompt: prompt || "story protocol",
         model: "dall-e-2",
         quality: 'standard', // or 'hd' -> only for dall-e-3
@@ -18,6 +18,6 @@ export async function POST(req: NextRequest) {
     });
 
     console.log(response.data);
-    const image_b64 = response.data[0].b64_json;
-    return NextResponse.json({ image_b64 }, { status: 200 });
+    const image_url = response.data[0].url;
+    return NextResponse.json({ image_url }, { status: 200 });
 }
