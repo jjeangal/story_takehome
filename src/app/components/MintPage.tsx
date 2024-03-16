@@ -24,15 +24,15 @@ export default function MintPage() {
     const toast = useToast();
 
     const handleRegisterRoot = async () => {
-        const result = await registerRootIp(storyClient!, policyId, nftId, toast);
+        const result = await registerRootIp(storyClient!, policyId, ipfsHash, nftId, toast);
         console.log("the result is ", result);
     }
 
     const handleUploadFile = async () => {
         if (imageUrl === "https://gateway.pinata.cloud/ipfs/QmdJrAhTiXPa98xaxWKZs4dfahd8SZV9oqsHyUfjhq3G2X") {
             toast({
-                title: 'Upload an image first.',
-                description: "You need to upload an image before minting it.",
+                title: 'Generate first.',
+                description: "You need to generate an image before minting it.",
                 status: 'error',
                 duration: 6000,
                 isClosable: true,

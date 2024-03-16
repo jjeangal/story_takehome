@@ -1,9 +1,15 @@
 import { StoryClient } from "@story-protocol/core-sdk";
 import { Address } from "viem";
 
-export async function registerRootIp(client: StoryClient, policyId: string, nftId: string, toast: any) {
-
+export async function registerRootIp(
+    client: StoryClient,
+    policyId: string,
+    ipfsHash: string,
+    nftId: string,
+    toast: any
+) {
     if (client === undefined) return;
+    if (ipfsHash === "") return;
 
     if (nftId == "") {
         toast({
@@ -20,7 +26,7 @@ export async function registerRootIp(client: StoryClient, policyId: string, nftI
         tokenContractAddress: process.env.NEXT_PUBLIC_NFT_CONTRACT_ADDRESS as Address,
         tokenId: nftId,
         txOptions: { waitForTransaction: true },
-        uri: "https://gateway.pinata.cloud/ipfs/Qm",
+        uri: ipfsHash,
     });
 
     console.log(`Root IPA created at transaction hash ${response.txHash}, IPA ID: ${response.ipId}`)
