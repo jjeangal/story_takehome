@@ -16,7 +16,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body>
+      <body style={{ backgroundColor: "white" }}>
         <Web3Provider>
           <Flex backgroundColor="white" w="100vw" height="100vh" flexDirection="column">
             <Header />

@@ -8,3 +8,23 @@ interface Window {
         // Add other properties and methods as needed
     };
 }
+
+export type IPAResponse = {
+    blockNumber: string;
+    blockTimestamp: string;
+    chainId: string;
+    childIpIds: string[];
+    id: string;
+    metadata: {
+        name: string;
+        hash: string;
+        registrationDate: string;
+        registrant: string;
+        uri: string;
+    };
+    metadataResolverAddress: string;
+    parentIpIds: string[];
+    rootIpIds: string[];
+    tokenContract: string;
+    tokenId: string;
+};
