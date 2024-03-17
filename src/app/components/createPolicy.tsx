@@ -22,7 +22,7 @@ export default function CreatePolicy({ setPolicyId }: { setPolicyId: React.Dispa
             return;
         }
 
-        const nonCommercialSocialRemixingParams: RegisterPILPolicyRequest = {
+        const nonCommercialSocialRemixingParams = {
             transferable: transferable,
             attribution: attribution,
             commercialUse: commercialUse,

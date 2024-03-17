@@ -1,12 +1,26 @@
-import { Flex, Text, Box } from "@chakra-ui/react";
+'use client';
+
+import { Flex, Button, Box } from "@chakra-ui/react";
 import { ConnectButton } from "@rainbow-me/rainbowkit";
 import PageTabs from "./PageTabs";
+import { useRouter } from "next/navigation";
 
 export default function Header() {
+    const router = useRouter();
+
     return (
-        <Flex height="8%" width="100%" justifyContent="space-between" alignItems="center">
-            <Flex flex={1} h="100 % " textAlign="left" alignItems="center">
-                < Text fontSize="x-large" p="10%" textColor="gray.800" fontStyle="bold" > SWE</Text >
+        <Flex height="10%" width="100%" justifyContent="space-between" alignItems="center">
+            <Flex flex={1} h="100%" textAlign="left" alignItems="center">
+                <Button
+                    background="none"
+                    fontSize="3xl"
+                    textColor="gray.700"
+                    fontWeight={200}
+                    onClick={() => router.push('/')}
+                    p="10%"
+                >
+                    SWE
+                </Button >
             </Flex >
             <Flex flex={1} h="100%" justifyContent="center" alignItems="center">
                 <PageTabs />

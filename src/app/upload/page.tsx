@@ -1,13 +1,13 @@
 'use client';
 
 import { Button, Flex, Text, Link, useToast } from "@chakra-ui/react";
-import { mint } from "./mint";
-import { registerRootIp } from "./registerRoot";
+import { mint } from "../components/mint";
+import { registerRootIp } from "../components/registerRoot";
 import { StoryClient } from "@story-protocol/core-sdk";
 import { useContext, useState } from "react";
 import { ClientsContext } from "../providers/clientsProvider";
-import CreatePolicy from "./createPolicy";
-import ImageGeneration from "./imageGeneration";
+import CreatePolicy from "../components/createPolicy";
+import ImageGeneration from "../components/imageGeneration";
 import { WalletClient, PublicClient } from "viem";
 
 export default function MintPage() {

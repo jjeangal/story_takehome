@@ -1,7 +1,6 @@
 'use client'
 
 import { Flex } from "@chakra-ui/react";
-import MintPage from "./components/MintPage";
 
 export default function Home() {
 
@@ -13,7 +12,7 @@ export default function Home() {
       w="100%"
       h="100%"
     >
-      <MintPage />
+
     </Flex>
   );
 }
