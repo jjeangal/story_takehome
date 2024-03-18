@@ -26,8 +26,9 @@ export default function ImageGeneration({ imageUrl, setImageUrl }: { imageUrl: s
             flexDirection="column"
             justifyContent="center"
             alignItems="center"
-            w="50%"
-            h="100%"
+            minW="50%"
+            minH="70vh"
+            overflowY="auto"
         >
             <Box
                 boxSize={{ base: "256px", sm: "350px", md: "400px", lg: "512px" }}

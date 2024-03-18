@@ -92,7 +92,7 @@ export default function MintPage() {
     return (
         <Flex
             flexDirection={{ base: "column", md: "row" }}
-            justifyContent="center"
+            justifyContent="flex-start"
             alignItems="center"
             width="100%"
         >
@@ -101,7 +101,7 @@ export default function MintPage() {
                 flexDirection="column"
                 justifyContent="center"
                 alignItems="center"
-                width="50%"
+                minW="40%"
             >
                 <Flex
                     flexDirection="row"
@@ -154,7 +154,6 @@ export default function MintPage() {
                             isDisabled={registering}
                             backgroundColor="gray.700"
                             textColor="white"
-                            w="25%"
                             minW="150px"
                             mt={8}
                             onClick={() => handleRegisterRoot()}
