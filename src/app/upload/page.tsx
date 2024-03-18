@@ -112,7 +112,7 @@ export default function MintPage() {
                 >
                     <Flex flexDirection="column" textColor="gray.800" p={4} borderWidth={1} borderColor="gray.800" borderRadius="xl" w="100%">
                         <Flex direction="row" align="center" justify="space-between" mb={4}>
-                            <Text fontSize="large">2 - Upload your image to IPFS and mint it as an NFT: </Text>
+                            <Text fontSize="large">2 - Upload your image to IPFS and mint it as an NFT</Text>
                             <Button
                                 isDisabled={uploading}
                                 textColor="white"
