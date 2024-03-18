@@ -15,7 +15,7 @@ export default function IPA({ params }: { params: { id: string } }) {
 
     const toast = useToast();
 
-    const handleUploadFile = async () => {
+    const handleUpdateImage = async () => {
         const body = {
             prompt: prompt,
             image: ipa?.metadata.uri
@@ -143,7 +143,7 @@ export default function IPA({ params }: { params: { id: string } }) {
                             textColor="white"
                             onClick={() => {
                                 setIsGenerating(true);
-                                handleUploadFile();
+                                handleUpdateImage();
                             }}
                             _hover={
                                 {

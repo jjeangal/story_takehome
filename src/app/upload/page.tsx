@@ -6,10 +6,10 @@ import { registerRootIp } from "../functions/registerRoot";
 import { StoryClient } from "@story-protocol/core-sdk";
 import { useContext, useState } from "react";
 import { ClientsContext } from "../providers/clientsProvider";
-import CreatePolicy from "../components/createPolicy";
-import ImageGeneration from "../components/imageGeneration";
 import { WalletClient, PublicClient } from "viem";
 import { FaExternalLinkAlt } from "react-icons/fa";
+import CreatePolicy from "../components/createPolicy";
+import ImageGeneration from "../components/imageGeneration";
 
 export default function MintPage() {
     const walletClient: WalletClient | undefined = useContext(ClientsContext)?.walletClient;
