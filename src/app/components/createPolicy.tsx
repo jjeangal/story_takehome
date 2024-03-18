@@ -1,5 +1,5 @@
-import { Flex, FormControl, Text, FormLabel, Grid, Switch, NumberInput, Textarea, Button } from "@chakra-ui/react";
-import { RegisterPILPolicyRequest, StoryClient } from "@story-protocol/core-sdk";
+import { Flex, FormControl, Text, FormLabel, Grid, Switch, Button } from "@chakra-ui/react";
+import { StoryClient } from "@story-protocol/core-sdk";
 import { useContext, useState } from "react";
 import { ClientsContext } from "../providers/clientsProvider";
 

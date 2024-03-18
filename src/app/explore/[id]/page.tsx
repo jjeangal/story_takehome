@@ -5,7 +5,7 @@ import { useEffect, useState } from "react";
 import { IPAResponse } from "../../../../types/globals";
 import { ImSpinner11 } from "react-icons/im";
 
-export default function Page({ params }: { params: { id: string } }) {
+export default function IPA({ params }: { params: { id: string } }) {
 
     const [ipa, setIpa] = useState<IPAResponse>();
     const [loading, setLoading] = useState(true);
@@ -182,9 +182,6 @@ export default function Page({ params }: { params: { id: string } }) {
                         <Button
                             backgroundColor="gray.700"
                             textColor="white"
-                            onClick={() => {
-
-                            }}
                             _hover={{ backgroundColor: "gray.600" }}
                             h="5%"
                             m={4}

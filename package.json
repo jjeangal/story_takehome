@@ -17,7 +17,6 @@
     "@pinata/sdk": "^2.1.0",
     "@rainbow-me/rainbowkit": "^2.0.2",
     "@story-protocol/core-sdk": "^0.0.1-beta-rc.10",
-    "@story-protocol/react": "0.0.1-beta.9",
     "@tanstack/react-query": "^5.26.3",
     "@wagmi/core": "^2.6.5",
     "axios": "^1.6.8",
