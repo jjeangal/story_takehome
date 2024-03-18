@@ -95,7 +95,6 @@ export default function MintPage() {
             justifyContent="center"
             alignItems="center"
             width="100%"
-            height="100%"
         >
             <ImageGeneration imageUrl={imageUrl} setImageUrl={setImageUrl} />
             <Flex
@@ -103,7 +102,6 @@ export default function MintPage() {
                 justifyContent="center"
                 alignItems="center"
                 width="50%"
-                h="100%"
             >
                 <Flex
                     flexDirection="row"
