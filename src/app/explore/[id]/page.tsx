@@ -1,15 +1,19 @@
 'use client'
 
-import { Flex, Image, Spinner, Text, Button } from "@chakra-ui/react";
+import { Box, Flex, Image, Spinner, Text, Button, useToast } from "@chakra-ui/react";
 import { useEffect, useState } from "react";
 import { IPAResponse } from "../../../../types/globals";
+import { ImSpinner11 } from "react-icons/im";
 
 export default function Page({ params }: { params: { id: string } }) {
 
     const [ipa, setIpa] = useState<IPAResponse>();
     const [loading, setLoading] = useState(true);
     const [isGenerating, setIsGenerating] = useState(false);
+    const [isImageGenerated, setIsImageGenerated] = useState(false);
     const [image, setImage] = useState<string | undefined>(ipa?.metadata.uri);
+
+    const toast = useToast();
 
     const handleUploadFile = async () => {
         const body = {
@@ -24,11 +28,20 @@ export default function Page({ params }: { params: { id: string } }) {
 
         if (!resp_upload.ok) {
             setIsGenerating(false);
+            toast({
+                title: 'Error with variation generation.',
+                description: resp_upload.statusText,
+                status: 'error',
+                duration: 6000,
+                isClosable: true,
+            })
             return 'API call failed:' + resp_upload;
         }
 
         const { image_url } = await resp_upload.json();
         setImage(image_url);
+        setIsGenerating(false);
+        setIsImageGenerated(true);
     }
 
     const getIPA = async () => {
@@ -103,59 +116,82 @@ export default function Page({ params }: { params: { id: string } }) {
                     <DataRow label="Registrant" value={ipa?.metadata.registrant} />
                     <DataRow label="URI" value={ipa?.metadata.uri.substring(0, 40) + (ipa?.metadata.uri.length > 40 ? '...' : '')} />
                 </Flex>
-                <Flex flexDirection="column" alignItems="center" h="100%" w='50%'>
-                    <Image
-                        src={image}
-                        alt={ipa?.metadata.name}
-                        boxSize="50%"
-                        objectFit="cover"
-                        onError={(e) => {
-                            (e.target as any).src = '/no_image.png';
-                        }}
-                        mt={10}
-                    />
-                    <Button
-                        isDisabled={isGenerating}
-                        backgroundColor="gray.700"
-                        textColor="white"
-                        onClick={() => {
-                            setIsGenerating(true);
-                            handleUploadFile();
-                        }}
-                        _hover={
-                            {
-                                backgroundColor: "gray.600"
+                <Flex
+                    flexDirection="column"
+                    alignItems="center"
+                    h="100%"
+                    w='50%'
+                >
+                    <Flex
+                        flexDirection="column"
+                        position="relative"
+                        justifyContent="center"
+                        h="100%"
+                    >
+                        <Image
+                            src={image}
+                            alt={ipa?.metadata.name}
+                            objectFit="cover"
+                            boxSize={{ base: "256px", sm: "350px", md: "400px", lg: "450px" }}
+                            onError={(e) => {
+                                (e.target as any).src = '/no_image.png';
+                            }}
+                        />
+                        <Button
+                            isDisabled={isGenerating}
+                            backgroundColor="gray.700"
+                            textColor="white"
+                            onClick={() => {
+                                setIsGenerating(true);
+                                handleUploadFile();
+                            }}
+                            _hover={
+                                {
+                                    backgroundColor: "gray.600"
+                                }
                             }
-                        }
-                        h="5%"
-                        m={4}
-                    >
-                        {isGenerating ? 'Generating...' : 'Create Variation'}
-                    </Button>
-                    <Button
-                        backgroundColor="gray.700"
-                        textColor="white"
-                        onClick={() => {
+                            h="5%"
+                            m={4}
+                        >
+                            {isGenerating ? <Spinner size="sm" color="black" /> : 'Create Variation'}
+                        </Button>
+                        {isImageGenerated && (
+                            <Box
+                                position="absolute"
+                                top="0"
+                                right="0"
+                                m="1"
+                                p="1"
+                                backgroundColor="white"
+                                borderRadius="lg"
+                                border="1px"
+                                borderColor="gray.300"
+                            >
+                                <ImSpinner11 color="green.500" />
+                            </Box>
+                        )}
+                        <Button
+                            backgroundColor="gray.700"
+                            textColor="white"
+                            _hover={{ backgroundColor: "gray.600" }}
+                            h="5%"
+                            m={4}
+                        >
+                            Mint License
+                        </Button>
+                        <Button
+                            backgroundColor="gray.700"
+                            textColor="white"
+                            onClick={() => {
 
-                        }}
-                        _hover={{ backgroundColor: "gray.600" }}
-                        h="5%"
-                        m={4}
-                    >
-                        Mint License
-                    </Button>
-                    <Button
-                        backgroundColor="gray.700"
-                        textColor="white"
-                        onClick={() => {
-
-                        }}
-                        _hover={{ backgroundColor: "gray.600" }}
-                        h="5%"
-                        m={4}
-                    >
-                        Register Derivative
-                    </Button>
+                            }}
+                            _hover={{ backgroundColor: "gray.600" }}
+                            h="5%"
+                            m={4}
+                        >
+                            Register Derivative
+                        </Button>
+                    </Flex>
                 </Flex>
             </Flex >
         ) : (
