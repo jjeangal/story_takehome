@@ -69,7 +69,7 @@ export default function MintPage() {
             imageUrl: imageUrl
         };
 
-        const resp_upload = await fetch("/api/pinata/uploadFile", {
+        const resp_upload = await fetch("/api/pinata/upload-file", {
             method: "POST",
             body: JSON.stringify(body)
         });

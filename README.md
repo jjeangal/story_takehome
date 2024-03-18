@@ -1,4 +1,14 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# 2024 Summer SWE Intern Exercise - Jean Gal
+
+This week long project is an assignment given by story protocol, where I created a web application that allows users to generate AI images and register them as IP assets through the story protocol typescript sdk. The project is built using Next.js, TypeScript, RainbowKit and Chakra UI.
+
+## Installation 
+
+Install my-project with pnpm by running the following command:
+
+```bash 
+  pnpm install
+```
 
 ## Getting Started
 
@@ -16,21 +26,54 @@ bun dev
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## API Reference
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+### OpenAI Generate
 
-## Learn More
+**Endpoint:** `/api/openai/generate`
 
-To learn more about Next.js, take a look at the following resources:
+**Method:** `POST`
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+**Description:** This endpoint generates an image based on a provided prompt using OpenAI's DALL-E model. The generated image is returned as a URL. The prompt, model, quality, size, style, and number of images to generate can be specified in the request body. If no prompt is provided, "story protocol" is used as the default prompt.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+### OpenAI Variations
 
-## Deploy on Vercel
+**Endpoint:** `/api/openai/variations`
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+**Method:** `POST`
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+**Description:** This endpoint creates a variation of an image using OpenAI's DALL-E model. The image is provided in the request body as a URL. The image is downloaded, saved locally, and then read as a stream. This stream is passed to the `createVariation` method of the OpenAI client. The URL of the generated image variation is returned in the response.
+
+### Pinata Upload File
+
+**Endpoint:** `/api/pinata/upload-file`
+
+**Method:** `POST`
+
+**Description:** This endpoint uploads an image to IPFS using the Pinata service. The image is provided in the request body as a URL. The image is downloaded as a stream and then uploaded to IPFS using the `pinFileToIPFS` method of the Pinata SDK. The IPFS hash of the uploaded image is returned in the response.
+
+### Story Get Asset
+
+**Endpoint:** `/api/story/get-asset`
+
+**Method:** `POST`
+
+**Description:** This endpoint retrieves an asset from the Story Protocol API. The ID of the asset is provided in the request body. The asset is retrieved using a GET request to the Story Protocol API, and the response is returned in the response. The Story Protocol API key is read from the environment variables.
+
+### Story List Assets
+
+**Endpoint:** `/api/story/list-assets`
+
+**Method:** `POST`
+
+**Description:** This endpoint retrieves a list of assets from the Story Protocol API. The request does not require any parameters. The assets are retrieved using a POST request to the Story Protocol API with a pagination limit of 100. The response from the Story Protocol API is returned in the response. The Story Protocol API key is read from the environment variables.
+
+## Providers
+
+### ClientsProvider
+
+The `ClientsProvider` is a context provider that provides instances of `StoryClient`, `WalletClient`, and `PublicClient`. These clients are used to interact with the Story Protocol and the Ethereum blockchain. The `StoryClient` is created with the current account address and the Ethereum provider from the window object. The `PublicClient` and `WalletClient` are created with the Sepolia testnet and the Ethereum provider from the window object.
+
+### Web3Provider
+
+The `Web3Provider` is a context provider that provides several contexts and configurations for the application. It uses the `ChakraProvider` to provide the Chakra UI theme, the `WagmiProvider` to provide the Wagmi configuration, the `QueryClientProvider` to provide the React Query client, and the `RainbowKitProvider` to provide the RainbowKit configuration. It also uses the `ClientsProvider` to provide the `StoryClient`, `WalletClient`, and `PublicClient`. The children components are rendered inside these providers, giving them access to these contexts and configurations.
