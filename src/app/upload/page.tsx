@@ -44,9 +44,9 @@ export default function MintPage() {
         setRegistering(true);
         const result = await registerRootIp(storyClient!, publicClient!, policyId, ipfsHash, nftId);
         if (result) {
-            setRegistering(false);
             setRootHashReceipt(result.transactionHash);
         };
+        setRegistering(false);
     }
 
     const handleUploadFile = async () => {
@@ -73,7 +73,10 @@ export default function MintPage() {
             body: JSON.stringify(body)
         });
 
-        if (!resp_upload.ok) return 'API call failed:' + resp_upload;
+        if (!resp_upload.ok) {
+            setUploading(false);
+            return 'API call failed:' + resp_upload;
+        }
 
         const { hash } = await resp_upload.json();
 
@@ -81,9 +84,7 @@ export default function MintPage() {
 
         const mintHash = await mint(walletClient, publicClient, setNftId, hash);
 
-        const receipt = await publicClient.waitForTransactionReceipt({ hash: mintHash as `0x${string}` });
-
-        setMintHashReceipt(receipt);
+        setMintHashReceipt(mintHash);
         setUploading(false);
     }
 
@@ -164,7 +165,7 @@ export default function MintPage() {
                                     backgroundColor: "gray.600"
                                 }
                             }
-                        >Register Root IP</Button> :
+                        > Register Root IP</Button> :
                         <Text>Success! Hash: {rootHashReceipt}</Text>
                     }
                 </Flex>

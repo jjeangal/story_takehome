@@ -3,13 +3,15 @@
 import { Flex, Text, Image, Box, SimpleGrid, Spinner } from "@chakra-ui/react";
 import { useState, useEffect } from "react";
 import { IPAResponse } from "../../../types/globals";
+import { useRouter } from "next/navigation";
 
 export default function Explore() {
 
+    const router = useRouter();
     const [results, setResults] = useState<IPAResponse[] | undefined>(undefined);
 
     const handleIPAs = async () => {
-        const response = await fetch("/api/story/ipa", {
+        const response = await fetch("/api/story/list-assets", {
             method: "POST",
             body: JSON.stringify({ prompt }),
         });
@@ -42,6 +44,10 @@ export default function Explore() {
                             borderColor="black"
                             borderRadius="lg"
                             position="relative"
+                            onClick={() => {
+                                router.push('/explore/' + ipa.id);
+                            }
+                            }
                             _hover={{
                                 borderColor: "red",
                             }}
