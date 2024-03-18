@@ -1,6 +1,6 @@
 'use client';
 
-import { Button, Flex, Text, Link, useToast, IconButton, Spinner } from "@chakra-ui/react";
+import { Button, Flex, Text, Link, useToast, IconButton, Spinner, useBreakpointValue } from "@chakra-ui/react";
 import { mint } from "../components/mint";
 import { registerRootIp } from "../components/registerRoot";
 import { StoryClient } from "@story-protocol/core-sdk";
@@ -91,7 +91,7 @@ export default function MintPage() {
 
     return (
         <Flex
-            flexDirection="row"
+            flexDirection={{ base: "column", md: "row" }}
             justifyContent="center"
             alignItems="center"
             width="100%"
@@ -110,7 +110,6 @@ export default function MintPage() {
                     justifyContent="space-between"
                     alignItems="center"
                     w="100%"
-                    h="35%"
                     p={4}
                 >
                     <Flex flexDirection="column" textColor="gray.800" p={4} borderWidth={1} borderColor="gray.800" borderRadius="xl" w="100%">
@@ -149,7 +148,6 @@ export default function MintPage() {
                     alignItems="center"
                     justifyContent="center"
                     w="100%"
-                    h="60%"
                     p={4}
                 >
                     <CreatePolicy setPolicyId={setPolicyId} />
@@ -159,6 +157,7 @@ export default function MintPage() {
                             backgroundColor="gray.700"
                             textColor="white"
                             w="25%"
+                            minW="150px"
                             mt={8}
                             onClick={handleRegisterRoot}
                             _hover={

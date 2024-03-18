@@ -45,7 +45,7 @@ export default function CreatePolicy({ setPolicyId }: { setPolicyId: React.Dispa
     return (
         <Flex flexDirection="column" textColor="white" borderColor="gray.800" borderWidth={1} p={4} borderRadius="xl" w="100%">
             <Text mb={4} textColor="gray.800" fontSize="large">3 - Choose PIL Policy Parameters</Text>
-            <Grid as="form" backgroundColor="gray.700" templateColumns="repeat(3, 1fr)" borderRadius="lg" rowGap={0} p={4} h="100%" w="100%" columnGap={8} >
+            <Grid as="form" backgroundColor="gray.700" templateColumns={{ base: "repeat(1, 1fr)", md: "repeat(2, 1fr)", lg: "repeat(3, 1fr)" }} borderRadius="lg" rowGap={0} p={4} h="100%" w="100%" columnGap={8} >
                 <FormControl display="flex" alignItems="center" mb={4}>
                     <FormLabel mb="0" fontSize="small">Transferable:</FormLabel>
                     <Switch size="sm" isChecked={transferable} onChange={(e) => setTransferable(e.target.checked)} />
