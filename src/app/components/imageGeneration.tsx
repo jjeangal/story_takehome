@@ -30,7 +30,7 @@ export default function ImageGeneration({ imageUrl, setImageUrl }: { imageUrl: s
             h="100%"
         >
             <Box
-                boxSize={{ base: "256px", md: "512px" }}
+                boxSize={{ base: "256px", sm: "350px", md: "400px", lg: "512px" }}
                 border="1px"
                 borderColor="gray.800"
             >
@@ -50,7 +50,7 @@ export default function ImageGeneration({ imageUrl, setImageUrl }: { imageUrl: s
                 borderColor="gray.800"
                 m={4}
                 h="5vh"
-                w={{ base: "256px", md: "512px" }}
+                w={{ base: "256px", sm: "350px", md: "400px", lg: "512px" }}
             />
             <Button
                 isDisabled={isGenerating}

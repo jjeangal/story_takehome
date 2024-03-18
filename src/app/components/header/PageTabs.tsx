@@ -27,7 +27,7 @@ export default function PageTabs() {
                     borderRadius="xl"
                     _hover={{}}
                     backgroundColor={
-                        `${pathname === '/upload' ? "gray.600" : "gray.700"}`
+                        `${pathname.startsWith('/upload') ? "gray.600" : "gray.700"}`
                     }
                     onClick={() => router.push('/upload')}
                 >
@@ -43,7 +43,7 @@ export default function PageTabs() {
                     borderRadius="xl"
                     _hover={{}}
                     backgroundColor={
-                        `${pathname === '/explore' ? "gray.600" : "gray.700"}`
+                        `${pathname.startsWith('/explore') ? "gray.600" : "gray.700"}`
                     }
                     onClick={() => router.push('/explore')}
                 >
