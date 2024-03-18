@@ -12,7 +12,16 @@ Install my-project with pnpm by running the following command:
 
 ## Getting Started
 
-First, run the development server:
+In order to make the `StoryClient` configuration work, a modification was made to the `StoryConfig` interface in the `@story-protocol/core-sdk` package. The `account` property, which originally only accepted an `Account` type, was updated to also accept an `Address` type. This change allows for more flexibility when providing the account information to the `StoryClient`. The updated `StoryConfig` interface is as follows:
+
+```typescript
+export interface StoryConfig {
+    readonly account: Account | Address;
+    readonly chainId?: SupportedChainIds;
+    readonly transport: Transport;
+}
+
+Then, run the development server:
 
 ```bash
 npm run dev
