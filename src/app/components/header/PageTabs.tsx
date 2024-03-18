@@ -16,6 +16,7 @@ export default function PageTabs() {
             borderRadius="2xl"
             h="65%"
             w="40%"
+            minW="200px"
         >
             <Flex
                 w="50%"
