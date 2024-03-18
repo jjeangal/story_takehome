@@ -75,7 +75,17 @@ export default function Page({ params }: { params: { id: string } }) {
     return (
         !loading && ipa ? (
             <Flex flexDirection="row" alignItems="center" justifyContent="center" h="100%" w="100%" textColor="black">
-                <Flex w='50%' flexDirection="column" justifyContent="center" alignItems="center">
+                <Flex
+                    borderColor="black"
+                    border="1px"
+                    borderRadius="xl"
+                    flexDirection="column"
+                    justifyContent="center"
+                    alignItems="center"
+                    w='50%'
+                    p={4}
+                    m={4}
+                >
                     <DataRow label="ID" value={ipa?.id} />
                     <DataRow label="Chain ID" value={ipa.chainId} />
                     <DataRow label="Parent IP IDs" value={ipa?.parentIpIds.join(', ')} />

@@ -67,6 +67,7 @@ export default function ImageGeneration({ imageUrl, setImageUrl }: { imageUrl: s
                     }
                 }
                 h="5%"
+                w="25%"
                 mb={4}
             >
                 {isGenerating ? <Spinner color="black" /> : 'Generate'}

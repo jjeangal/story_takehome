@@ -50,6 +50,7 @@ export default function Explore() {
                             }
                             _hover={{
                                 borderColor: "red",
+                                cursor: "pointer"
                             }}
                         >
                             <Image
