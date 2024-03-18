@@ -41,7 +41,7 @@ export default function Explore() {
                             alignItems="center"
                             justifyContent="center"
                             border="1px"
-                            borderColor="black"
+                            borderColor="gray.300"
                             borderRadius="lg"
                             position="relative"
                             onClick={() => {
@@ -49,7 +49,7 @@ export default function Explore() {
                             }
                             }
                             _hover={{
-                                borderColor: "red",
+                                borderColor: "gray.800",
                                 cursor: "pointer"
                             }}
                         >
@@ -60,7 +60,7 @@ export default function Explore() {
                                 objectFit="cover"
                                 borderTopRadius="lg"
                                 borderBottom="1px"
-                                borderBottomColor="black"
+                                borderBottomColor="gray.300"
                                 onError={(e) => {
                                     (e.target as any).src = '/no_image.png';
                                 }}
@@ -75,7 +75,7 @@ export default function Explore() {
                                     backgroundColor="white"
                                     borderRadius="lg"
                                     border="1px"
-                                    borderColor="black"
+                                    borderColor="gray.300"
                                 >
                                     <Text color="black">root</Text>
                                 </Box>

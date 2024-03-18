@@ -1,6 +1,6 @@
 'use client'
 
-import { Flex, Image, Spinner, Text, Input, Button } from "@chakra-ui/react";
+import { Flex, Image, Spinner, Text, Button } from "@chakra-ui/react";
 import { useEffect, useState } from "react";
 import { IPAResponse } from "../../../../types/globals";
 

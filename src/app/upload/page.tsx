@@ -1,8 +1,8 @@
 'use client';
 
 import { Button, Flex, Text, Link, useToast, IconButton, Spinner, useBreakpointValue } from "@chakra-ui/react";
-import { mint } from "../components/mint";
-import { registerRootIp } from "../components/registerRoot";
+import { mint } from "../functions/mint";
+import { registerRootIp } from "../functions/registerRoot";
 import { StoryClient } from "@story-protocol/core-sdk";
 import { useContext, useState } from "react";
 import { ClientsContext } from "../providers/clientsProvider";
@@ -157,7 +157,7 @@ export default function MintPage() {
                             w="25%"
                             minW="150px"
                             mt={8}
-                            onClick={handleRegisterRoot}
+                            onClick={() => handleRegisterRoot()}
                             _hover={
                                 {
                                     backgroundColor: "gray.600"
