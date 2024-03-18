@@ -1,6 +1,6 @@
 'use client';
 
-import { Button, Flex, Text, Link, useToast } from "@chakra-ui/react";
+import { Button, Flex, Text, Link, useToast, IconButton, Spinner } from "@chakra-ui/react";
 import { mint } from "../components/mint";
 import { registerRootIp } from "../components/registerRoot";
 import { StoryClient } from "@story-protocol/core-sdk";
@@ -9,6 +9,7 @@ import { ClientsContext } from "../providers/clientsProvider";
 import CreatePolicy from "../components/createPolicy";
 import ImageGeneration from "../components/imageGeneration";
 import { WalletClient, PublicClient } from "viem";
+import { FaExternalLinkAlt } from "react-icons/fa";
 
 export default function MintPage() {
     const walletClient: WalletClient | undefined = useContext(ClientsContext)?.walletClient;
@@ -128,7 +129,7 @@ export default function MintPage() {
                                 w="25%"
                                 mr={4}
                             >
-                                Upload
+                                {uploading ? <Spinner size="sm" color="black" /> : 'Upload'}
                             </Button>
                         </Flex>
                         <Text fontSize="small">
@@ -165,8 +166,18 @@ export default function MintPage() {
                                     backgroundColor: "gray.600"
                                 }
                             }
-                        > Register Root IP</Button> :
-                        <Text>Success! Hash: {rootHashReceipt}</Text>
+                        >  {registering ? <Spinner color="black" /> : 'Register Root IP'}</Button> :
+                        <Flex flexDirection="row" w="25%" justifyContent="center" alignItems="center">
+                            <Text textColor="black">Success!</Text>
+                            <IconButton
+                                as={Link}
+                                href={`https://sepolia.etherscan.io/tx/${rootHashReceipt}`}
+                                isExternal
+                                aria-label="External link"
+                                icon={<FaExternalLinkAlt />}
+                                colorScheme="black"
+                            />
+                        </Flex>
                     }
                 </Flex>
             </Flex>

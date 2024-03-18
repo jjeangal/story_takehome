@@ -120,7 +120,7 @@ export default function Page({ params }: { params: { id: string } }) {
                         h="5%"
                         m={4}
                     >
-                        {isGenerating ? 'Generating...' : 'Generate'}
+                        {isGenerating ? 'Generating...' : 'Create Variation'}
                     </Button>
                     <Button
                         backgroundColor="gray.700"
@@ -132,7 +132,19 @@ export default function Page({ params }: { params: { id: string } }) {
                         h="5%"
                         m={4}
                     >
+                        Mint License
+                    </Button>
+                    <Button
+                        backgroundColor="gray.700"
+                        textColor="white"
+                        onClick={() => {
 
+                        }}
+                        _hover={{ backgroundColor: "gray.600" }}
+                        h="5%"
+                        m={4}
+                    >
+                        Register Derivative
                     </Button>
                 </Flex>
             </Flex >

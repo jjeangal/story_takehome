@@ -1,4 +1,4 @@
-import { Box, Button, Flex, Input, Image } from "@chakra-ui/react";
+import { Box, Button, Flex, Input, Image, Spinner } from "@chakra-ui/react";
 import { Dispatch, SetStateAction, useState } from "react";
 
 export default function ImageGeneration({ imageUrl, setImageUrl }: { imageUrl: string, setImageUrl: Dispatch<SetStateAction<string>> }) {
@@ -69,7 +69,7 @@ export default function ImageGeneration({ imageUrl, setImageUrl }: { imageUrl: s
                 h="5%"
                 mb={4}
             >
-                {isGenerating ? 'Generating...' : 'Generate'}
+                {isGenerating ? <Spinner color="black" /> : 'Generate'}
             </Button>
         </Flex>
     );
