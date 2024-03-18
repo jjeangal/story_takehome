@@ -33,7 +33,7 @@ export default function Explore() {
     return (
         results ? (
             <Flex justifyContent="center" bgColor="white" w="100%">
-                <SimpleGrid columns={4} spacing={10} minH="90vh">
+                <SimpleGrid columns={{ base: 2, sm: 2, md: 3, lg: 4 }} spacing={10} minH="90vh">
                     {results.map((ipa, index) => (
                         <Flex
                             flexDirection="column"
@@ -80,7 +80,7 @@ export default function Explore() {
                                     <Text color="black">root</Text>
                                 </Box>
                             )}
-                            <Text size="xs" color="black" isTruncated maxWidth="256px">{ipa.id}</Text>
+                            <Text size="xs" color="black" isTruncated maxWidth="200px">{ipa.id}</Text>
                             <Text size="xs" color="black">{ipa.metadata.name || '\u00A0'}</Text>
                         </Flex>
                     ))}

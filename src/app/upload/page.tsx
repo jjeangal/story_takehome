@@ -1,6 +1,6 @@
 'use client';
 
-import { Button, Flex, Text, Link, useToast, IconButton, Spinner, useBreakpointValue } from "@chakra-ui/react";
+import { Button, Flex, Text, Link, useToast, IconButton, Spinner } from "@chakra-ui/react";
 import { mint } from "../functions/mint";
 import { registerRootIp } from "../functions/registerRoot";
 import { StoryClient } from "@story-protocol/core-sdk";
