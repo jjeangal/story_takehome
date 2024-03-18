@@ -21,6 +21,23 @@ export interface StoryConfig {
     readonly transport: Transport;
 }
 
+## Environment Variables
+
+- `NEXT_PUBLIC_RPC_PROVIDER_URL`: This is the URL of the Ethereum RPC provider. `"https://ethereum-sepolia-rpc.publicnode.com"`.
+
+- `NEXT_PUBLIC_NFT_CONTRACT_ADDRESS`: This is the Ethereum address of the NFT contract `"0xC06189455340139e0EDCe0744d715ae43176CDD7"`.
+
+- `NEXT_PUBLIC_WALLET_CONNECT_ID`: This is the ID used for WalletConnect. `"b80150a398759195441f9361eb151c24"`.
+
+- `NEXT_PUBLIC_OPENAI_API_KEY`: This is the API key for OpenAI. `"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"`.
+
+- `NEXT_PUBLIC_ENABLE_TESTNETS`: This is a boolean value that determines whether testnets should be enabled. `'true'`.
+
+- `NEXT_PUBLIC_PINATA_API_JWT`: This is the JWT (JSON Web Token) for the Pinata API. "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySW5mb3JtYXRpb24iOnsiaWQiOiJiZmZmYjkyNC02ZDRlLTQzMmYtYTFmNC02N2Y3NWY4NjM2OGMiLCJlbWFpbCI6ImplYW5nYWwucHJvQGdtYWlsLmNvbSIsImVtYWlsX3ZlcmlmaWVkIjp0cnVlLCJwaW5fcG9saWN5Ijp7InJlZ2lvbnMiOlt7ImlkIjoiRlJBMSIsImRlc2lyZWRSZXBsaWNhdGlvbkNvdW50IjoxfSx7ImlkIjoiTllDMSIsImRlc2lyZWRSZXBsaWNhdGlvbkNvdW50IjoxfV0sInZlcnNpb24iOjF9LCJtZmFfZW5hYmxlZCI6ZmFsc2UsInN0YXR1cyI6IkFDVElWRSJ9LCJhdXRoZW50aWNhdGlvblR5cGUiOiJzY29wZWRLZXkiLCJzY29wZWRLZXlLZXkiOiIzZDA2YjMwODcxZjg4MDg2N2MwMiIsInNjb3BlZEtleVNlY3JldCI6IjhhZmQ1ZGRiMDQ3ZTlhMGFjN2VlODdhMTk3OGEyMTZiMDI5ZWZmZTE1MWYwNjlmZTFmYjk1MjlhYTIzMzdhYjAiLCJpYXQiOjE3MTAzNjU0MTd9.uBExBWitufcHG405JRUu2Vwf9fa35ajIyE1M553xT_M"
+
+- `NEXT_PUBLIC_STORY_API_KEY`: This is the API key for the Story Protocol. `"U3RvcnlQcm90b2NvbFRlc3RBUElLRVk="`.
+
+
 Then, run the development server:
 
 ```bash
