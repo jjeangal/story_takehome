@@ -1,4 +1,4 @@
-# 2024 Summer SWE Intern Exercise - Jean Gal
+# 2024 Summer SWE Intern Take Home - Jean Gal
 
 This week long project is an assignment given by story protocol, where I created a web application that allows users to generate AI images and register them as IP assets through the story protocol typescript sdk. The project is built using Next.js, TypeScript, RainbowKit and Chakra UI.
 
